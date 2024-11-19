@@ -1,0 +1,180 @@
+/* Define reusable CSS variables for theme colors */
+:root {
+  --primary-color: #b5c18e;
+  --secondary-color: #f7dcb9;
+  --accent-color: #deac80;
+  --dark-color: #b99470;
+  --dark0: #6280d1;
+  --dark1: #203a5e;
+  --dark2: #223949;
+}
+
+/* UNIVERSAL/MAIN SELECTOR STYLING */
+html,
+body {
+  height: auto;
+  font-family: "Arvo", sans-serif;
+  background-color: whitesmoke;
+  color: whitesmoke;
+  overflow: auto;
+}
+
+body {
+  background: whitesmoke;
+  background-size: auto;
+}
+.inverted-colors {
+  background-color: whitesmoke;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
+/* HEADER/NAVBAR STYLING */
+header > .box,
+.navbar {
+  background-color: white;
+  padding: 0px;
+}
+
+.navbar {
+  padding: 10px 20px;
+}
+
+.navbar-item {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 30px;
+}
+
+/* Highlight the GitHub button */
+#gitPage {
+  color: black;
+  font-weight: 600;
+}
+
+ /* Center align the brand/logo */
+.navbar-brand {
+  text-align: center;
+}
+
+/* Center-align the start section of the navbar */
+.navbar-start {
+  text-align: center;
+  justify-content: center;
+}
+
+  /* Larger font size for menu labels */
+.menu-label {
+  font-size: 1.25rem;
+}
+
+  /* Style links in navbar and menus */
+.navbar-item,
+.menu-list li a {
+  background-color: transparent;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.navbar-dropdown .navbar-item {
+  color: rgb(255, 255, 255);
+}
+
+.navbar-dropdown .navbar-item.more-button {
+  color: white !important;
+}
+
+.button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--dark-color);
+}
+
+/* Inverted colour selectors for nav */
+.inverted-colors .button {
+  background-color: white;
+  color: black !important;
+}
+
+.inverted-colors .menu-list li a {
+  background-color: transparent;
+  color: white;
+}
+
+.inverted-colors .navbar-item #modal-button {
+  color: white;
+}
+
+/* Modal Stlying */
+#search-form {
+  /* Style the search modal with rounded borders */
+  border: black solid 1.5rem;
+  border-radius: 2rem;
+  background-color: black;
+}
+
+/* HERO SECTION STYLING */
+.hero {
+   /* Apply a background color and center text */
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  text-align: center;
+}
+
+.container {
+   /* Center content inside the container */
+  display: flex;
+  justify-content: center;
+}
+
+.hero-box {
+   /* Style the hero section with padding and rounded corners */
+  background-color: white;
+  padding: 20px 0px;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto 20px;
+}
+
+h2.title {
+  /* Style the hero title with unique font and color */
+  color: var(--dark-color);
+  font-size: 3rem;
+  font-weight: 100;
+  font-family: cursive;
+    color:#6280d1;
+}
+
+.inverted-colors h2.title {
+   /* Invert title colors */
+  color: white;
+}
+
+/* MAIN CONTENT STYLING */
+.columns {
+  max-width: 99%;
+}
+
+.box {
+   /* Add padding and background to boxes */
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.spacer {
+   /* Add spacing between elements */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
