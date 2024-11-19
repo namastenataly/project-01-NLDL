@@ -320,3 +320,143 @@ function spoonAPICallerIng(url) {
       console.log(`Unable to connect to API`);
     });
 }
+
+//api caller when form is submitted and recipe name is selected
+function spoonAPiCallerRecipe(url) {
+  fetch(url)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          // console.log(data);
+          createButtonsRecipe(data);
+        });
+      } else {
+        console.log(`Error: ${response.statusText}`);
+      }
+    })
+    .catch(function (error) {
+      console.log(`Unable to connect to API`);
+    });
+}
+
+//api caller when button is clicked
+function spoonAPICallerButton(url) {
+  fetch(url)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          // console.log(data);
+          // clearDisplay();
+          createRecipeInfo(data);
+          // console.log(displayedRecipe);
+        });
+      } else {
+        console.log(`Error: ${response.statusText}`);
+      }
+    })
+    .catch(function (error) {
+      console.log(`Unable to connect to API`);
+    });
+}
+
+//api caller for youtube
+function ytAPICaller(data) {
+  let ytQuery = data;
+  console.log(ytQuery);
+
+  let apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${ytQuery}&topicId=Food&key=${ytAPIKey}`;
+
+  fetch(apiURL)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
+          embedVid(data);
+        });
+      } else {
+        console.log(`Error: ${response.statusText}`);
+      }
+    })
+    .catch(function (error) {
+      console.log(`Unable to connect to API`);
+    });
+}
+
+//make extra inputs for extra ingredients
+function addInput() {
+  let inputId = `input` + clicked;
+  let input = document.createElement(`input`);
+  input.classList = `input`;
+  input.setAttribute(`type`, `text`);
+  input.setAttribute(`id`, inputId);
+
+  formInputsDivEl.appendChild(input);
+}
+
+//clearing display to make room for a new display call
+function clearDisplay() {
+  while (recipeIngEl.firstChild) {
+    recipeIngEl.firstChild.remove();
+  }
+
+  while (recipeInfoEl.firstChild) {
+    recipeInfoEl.firstChild.remove();
+  }
+
+  // console.log(recipeSummaryEl.firstChild);
+  while (recipeSummaryEl.firstChild) {
+    recipeSummaryEl.firstChild.remove();
+  }
+}
+
+//clearing buttons when a new search is submitted
+function clearButtons() {
+  while (createdRecipesEl.firstChild) {
+    createdRecipesEl.firstChild.remove();
+  }
+}
+
+//clear extra inputs on new search
+function clearInputs() {
+  if (formInputsDivEl.children[2]) {
+    // console.log(formInputsDivEl.children[2]);
+    formInputsDivEl.children[2].remove();
+  }
+
+  if (formInputsDivEl.children[1]) {
+    // console.log(formInputsDivEl.children[1]);
+    formInputsDivEl.children[1].remove();
+  }
+
+  // console.log(formInputsDivEl.childElementCount);
+}
+
+//storing recipe id to local storage if favourited
+function favouriteRecipe() {
+  for (let i = 0; i < savedRecipes.length; i++) {
+    if (savedRecipes[i].id === displayedRecipe.id) {
+      matched = 1;
+    }
+  }
+
+  if (matched === 0) {
+    savedRecipes.push(displayedRecipe);
+
+    localStorage.setItem(`recipes`, JSON.stringify(savedRecipes));
+
+    //create a button
+    let favButtonEl = document.createElement(`button`);
+    favButtonEl.classList = `button created-buttons`;
+    favButtonEl.setAttribute(`id`, displayedRecipe.id);
+    favButtonEl.textContent = displayedRecipe.name;
+
+    let favLiEl = document.createElement(`li`);
+    favLiEl.appendChild(favButtonEl);
+    favDivEl.appendChild(favLiEl);
+
+    buttonInit();
+  } else {
+    console.log(`Recipe already saved.`);
+    matched = 0;
+  }
+}
