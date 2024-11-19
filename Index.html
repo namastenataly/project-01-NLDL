@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🍴 Meal Your Goals 🍴</title>
+    <!-- Bulma cdn link to access CSS framework -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
+    />
+    <!-- Applying google fonts to the smaller font paragraphs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Galada&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Swiper cdn link to access swiper css styling -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
 
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <header>
+  <div class="box">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a id="homePage" class="navbar-item">Home</a>
+          <a id="modal-button" class="navbar-item">Pick Your Meals</a>
+          </div>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a id="gitPage" class="button is-primary github-button">GitHub</a>
+              <a id="mode-toggle" class="button is-light"><strong>🌙</strong></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+    <!-- HERO SECTION -->
+    <section class="hero-box">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column">
+            <h2 class="title">🍴 Meal Your Goals 🍴</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="columns box mx-3">
+      <!-- Side menu -->
+      <article class="column is-one-fifth">
+        <aside class="menu has-text-centered">
+          <p class="menu-label is-size-4">Your Menu!</p>
+          <ul class="menu-list"></ul>
+          <div class="spacer">
+            <p>Favorites</p>
+            <ul class="menu-list" id="favourites"></ul>
+          </div>
+
+          <div class="spacer">
+            <p>Your requested recipes will show here:</p>
+          </div>
+          <ul class="menu-list" id="recipe-buttons"></ul>
+        </aside>
+      </article>
+
+      <!-- Recipe info -->
+      <article class="column is-two-fifths">
+        <div style="text-align: center">
+          <h1 id="recipe-name"></h1>
+          <button
+            class="button is-invisible is-small has-text-black mt-2"
+            id="fav-button"
+          >
+            Favorite
+          </button>
+        </div>
+        <div id="recipe-ingredients"></div>
+        <div id="recipe-info"></div>
+      </article>
+
+      <!-- Recipe images and videos -->
+      <article class="column is-two-fifths">
+        <div id="recipe-info-container">
+          <img id="recipe-picture" />
+          <iframe
+            class="has-ratio is-flex-direction-row is-flex-grow-1"
+            src=""
+            frameborder="0"
+            allowfullscreen
+            id="yt-video"
+          ></iframe>
+          <div id="recipe-summary"></div>
+        </div>
+      </article>
+    </main>
+
+    <!-- CAROUSEL RESPONSIVE SLIDER -->
+    <section id="carousel-row" class="columns mx-3 is-flex-direction-row">
+      <div id="trending">
+        <h2 class="has-text-centered">POPULAR RECIPES OF THE WEEK</h2>
+        <h2 id="recipeTitle" class="has-text-centered"></h2>
+        <div class="container-carousel">
+          <div class="swiper trending-slider">
+            <div class="swiper-wrapper">
+              <!-- SLIDE 1 -->
+              <article class="swiper-slide trending-slide">
+                <div class="trending-slide-img recipeRandom">
+                  <img src="" class="imgs" loading="lazy" />
+                </div>
+              </article>
+              <!-- SLIDE 2 -->
+              <article class="swiper-slide trending-slide">
+                <div class="trending-slide-img recipeRandom">
+                  <img src="" class="imgs" loading="lazy" />
+                </div>
+              </article>
+              <!-- SLIDE 3 -->
+              <article class="swiper-slide trending-slide">
+                <div class="trending-slide-img recipeRandom">
+                  <img src="" class="imgs" loading="lazy" />
+                </div>
+              </article>
