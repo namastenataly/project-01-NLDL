@@ -178,3 +178,175 @@ h2.title {
   margin-bottom: 20px;
   font-weight: bold;
 }
+
+#carousel-row {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin: auto;
+}
+
+#recipe-info-container p #modal-button {
+  color: black;
+}
+
+.inverted-colors #recipe-info-container,
+.inverted-colors #carousel-row,
+.inverted-colors
+  *:not(img):not(.modal):not(.modal-background):not(.field):not(.control):not(
+    .label
+  ):not(.checkbox):not(.has-text-primary):not(.button):not(footer):not(strong) {
+  background-color: var(--dark1);
+  color: white;
+}
+
+.inverted-colors #recipe-info-container p {
+  color: white;
+}
+
+/* Fetch/ Dynamically Created Data Display */
+#recipe-ingredients {
+  overflow: auto;
+  max-height: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 5%;
+  padding-left: 30px;
+}
+
+#recipe-info {
+  overflow: auto;
+  max-height: 300px;
+  padding-left: 30px;
+}
+
+#yt-video {
+  width: 556px;
+  height: 370px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#fav-button {
+  font-weight: 600;
+}
+
+#recipe-name {
+  font-size: 250%;
+}
+
+/* CAROUSEL STYLING BELOW */
+/* Text Styling */
+h2 {
+  font-family: "cheese", Arial;
+  font-size: 4rem;
+  color: #6280d1;;
+}
+
+#recipeTitle {
+  font-family: "Gula", Arial;
+  font-size: 2.5rem;
+}
+
+/* Container Styling */
+
+.container-carousel {
+  padding: 0 1rem;
+}
+
+#recipeTitle {
+  margin: 2rem 0rem;
+}
+
+#trending {
+  margin: auto;
+  max-width: 100%;
+}
+
+.trending-slide {
+  width: 30rem;
+  height: 30rem;
+}
+
+.trending-slide-img img {
+  width: 50vw;
+  height: 30vh;
+  border-radius: 2rem;
+  object-fit: cover;
+  border: black solid 2px;
+}
+
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  display: none;
+}
+
+/* FOOTER STYLING */
+footer {
+  background-color: transparent;
+  padding: 20px;
+  text-align: center;
+  bottom: 0;
+  width: 50%;
+  margin: auto;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVE LAYOUT */
+/* Media query: Mobile */
+@media (max-width: 360px) {
+  .trending-slide {
+    width: 10rem !important;
+    height: 13rem !important;
+  }
+  .trending-slide-img img {
+    width: 10rem !important;
+    height: 10rem !important;
+  }
+  #recipeTitle {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h2.title {
+    font-size: 2.5rem;
+  }
+}
+
+/* Media query: Tablet */
+@media (min-width: 370px) and (max-width: 1024px) {
+  .trending-slide {
+    width: 15rem !important;
+    height: 18rem !important;
+  }
+  .trending-slide-img img {
+    width: 15rem !important;
+    height: 15rem !important;
+  }
+  h2 {
+    font-size: 2.3rem;
+  }
+  #recipeTitle {
+    font-size: 2rem;
+  }
+  main {
+    flex-direction: row;
+  }
+  h2.title {
+    font-size: 3rem;
+    font-family: cursive;
+    color:#6280d1;
+  }
+}
+
+.dark-mode {
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* Light text */
+}
+
+.dark-mode .navbar, 
+.dark-mode .box {
+  background-color: #333333; /* Darker navbar and box backgrounds */
+  color: #ffffff;
+}
