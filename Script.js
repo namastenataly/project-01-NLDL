@@ -460,3 +460,188 @@ function favouriteRecipe() {
     matched = 0;
   }
 }
+
+//show modal on clicking right button
+modalButton.addEventListener(`click`, function (event) {
+  // console.log(`it clicked`);
+  openModal();
+  clearInputs();
+
+  //reset extra ingredient count
+  clicked = 0;
+});
+
+//close modal on click the x icon
+modalClose.addEventListener(`click`, function (event) {
+  closeModal();
+});
+
+//close modal on clicking cancel button on form
+formClose.addEventListener(`click`, function (event) {
+  closeModal();
+});
+
+//adds extra inputs if user wants to add more ingredients
+addIngEl.addEventListener(`click`, function (event) {
+  event.preventDefault();
+
+  // console.log(`button clicked`);
+  if (selectEl.value === `By Ingredient`) {
+    // console.log(`its works`);
+
+    if (clicked < maxAdd) {
+      addInput();
+      clicked++;
+    } else {
+      console.log(`Max extra ingridients is 3`);
+    }
+  }
+});
+
+//hiding buttons if irrelevent to selector
+selectEl.addEventListener(`change`, function (event) {
+  if (selectEl.value === `By Recipe Name`) {
+    vegetarianDivEl.classList.remove(`is-invisible`);
+    addIngDivEl.classList = `is-invisible`;
+  }
+
+  if (selectEl.value === `By Ingredient`) {
+    addIngDivEl.classList.remove(`is-invisible`);
+    vegetarianDivEl.classList = `is-invisible`;
+  }
+});
+
+//displaying info if a favourited recipe is clicked
+favButtonEl.addEventListener(`click`, function (event) {
+  // console.log(displayedRecipe);
+
+  if (event.target) {
+    // console.log(savedRecipes);
+    favouriteRecipe();
+  }
+});
+
+//function for when form is submitted
+formEl.addEventListener(`submit`, function (event) {
+  event.preventDefault();
+
+  // console.log(inputEl.value);
+
+  if (!inputEl.value) {
+    console.log(`Nothing entered`);
+    closeModal();
+    inputEl.value = ``;
+  } else {
+    clicked = 0;
+    // console.log(inputEl.value);
+    let spoonInput = inputEl.value;
+
+    //calling api depending on selector
+    if (selectEl.value === `By Ingredient`) {
+      // console.log(`it matches ingredient`);
+
+      //checking if extra ingredients were added
+      if (ingredientEl.length > 1) {
+        for (let i = 1; i < ingredientEl.length; i++) {
+          // console.log(ingredientEl[i].value);
+
+          let extraIng = `,+` + ingredientEl[i].value;
+          // console.log(extraIng);
+          spoonInput = spoonInput.concat(extraIng);
+          // console.log(newString);
+        }
+      }
+
+      let apiURL = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${spoonInput}&number=5&apiKey=${spoonAPIKey}`;
+
+      clearButtons();
+      spoonAPICallerIng(apiURL);
+    } else if (selectEl.value === `By Recipe Name`) {
+      // console.log(`it matches recipe name`);
+      if (isVegetarianEl.checked) {
+        let apiURL = `https://api.spoonacular.com/recipes/complexSearch?query=${spoonInput}&diet=vegetarian&number=5&apiKey=${spoonAPIKey}`;
+        clearButtons();
+        spoonAPiCallerRecipe(apiURL);
+        // console.log(`vegetarian checked`);
+        // console.log(apiURL);
+      } else {
+        let apiURL = `https://api.spoonacular.com/recipes/complexSearch?query=${spoonInput}&number=5&apiKey=${spoonAPIKey}`;
+        clearButtons();
+        spoonAPiCallerRecipe(apiURL);
+      }
+    } else {
+      console.log(`it doesnt match`);
+    }
+
+    closeModal();
+    inputEl.value = ``;
+  }
+});
+
+displayFavouritesOnStartup();
+
+// function with a clear button attached not working
+function displayFavouritesOnStartupClear() {
+  // console.log(savedRecipes);
+  for (let i = 0; i < savedRecipes.length; i++) {
+    let favButtonEl = document.createElement(`button`);
+    favButtonEl.classList = `button created-buttons is-clipped fav-buttons`;
+    favButtonEl.setAttribute(`id`, savedRecipes[i].id);
+    favButtonEl.textContent = savedRecipes[i].name;
+    let favDelEl = document.createElement(`button`);
+    favDelEl.classList = `button del-buttons`;
+    favDelEl.setAttribute(`id`, savedRecipes[i].id);
+    favDelEl.textContent = `Clear`;
+    let buttonDiv = document.createElement(`div`);
+    buttonDiv.classList = `buttons has-addons`;
+    buttonDiv.appendChild(favButtonEl);
+    buttonDiv.appendChild(favDelEl);
+    // let favLiEl = document.createElement(`li`);
+    // favLiEl.appendChild(buttonDiv);
+    favDivEl.appendChild(buttonDiv);
+  }
+  buttonInit();
+}
+
+// FUNCTIONS TO CHANGE THE PAGES IN NAVBAR
+// Doing reload method instead as it is the same page
+homePage.addEventListener("click", function (event) {
+  window.location.reload();
+});
+
+// Linking to our GitHub Repo for the Project ! :D
+gitHubPage.addEventListener("click", function (event) {
+  window.location.href =
+    "https://github.com/namastenataly/project-01-NLDL";
+});
+
+// FUNCTION TO TOGGLE DARK AND LIGHT MODE
+modeBtn.addEventListener("click", function () {
+  bodyEl.classList.toggle("inverted-colors");
+  const pageMode = bodyEl.classList.contains("inverted-colors")
+    ? "inverted"
+    : "normal";
+  localStorage.setItem("mode", pageMode);
+  if (bodyEl.classList.contains("inverted-colors")) {
+    bodyEl.style.backgroundColor = "var(--dark0)";
+  } else {
+    bodyEl.style.backgroundColor = "var(--primary-color)";
+  }
+  modeBtn.textContent = bodyEl.classList.contains("inverted-colors")
+    ? "☀️"
+    : "🌙";
+});
+
+// rgba(0, 0, 0, 0.5)
+
+// var(--dark0)
+
+function init() {
+  const pageMode = localStorage.getItem("mode");
+  if (pageMode === "inverted") {
+    bodyEl.classList.add("inverted-colors");
+    bodyEl.style.backgroundColor = "var(--dark0)";
+    modeBtn.textContent = "🌙";
+  }
+}
+init();
