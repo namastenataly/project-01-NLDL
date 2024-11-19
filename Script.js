@@ -164,3 +164,159 @@ document.addEventListener("DOMContentLoaded", function () {
 //
 // BELOW ARE NON-ONLOAD FUNCTIONS, THEY DO NOT NEED TO BE LISTED AT THE TOP
 //
+//amount of extra ingredients allowed to be added
+const maxAdd = 2;
+let clicked = 0;
+
+//local data checker
+let matched = 0;
+
+//recipe tracker for button clicks
+let displayedRecipe = {
+  id: ``,
+  name: ``,
+};
+
+//grabbing and stored data
+let savedRecipes = JSON.parse(localStorage.getItem(`recipes`));
+if (savedRecipes === null) {
+  savedRecipes = [];
+}
+
+//function opens modal
+function openModal() {
+  modalEl.classList.add(`is-active`);
+}
+
+//function closes modal
+function closeModal() {
+  modalEl.classList.remove(`is-active`);
+}
+
+//creating buttons with recipe names from ingredient search
+function createButtonsIng(data) {
+  for (let i = 0; i < data.length; i++) {
+    let name = data[i].title;
+    let recipeId = data[i].id;
+    let listEl = document.createElement(`li`);
+    let buttonEl = document.createElement(`button`);
+
+    buttonEl.textContent = name;
+    buttonEl.setAttribute(`id`, recipeId);
+    buttonEl.classList = `created-buttons`;
+
+    listEl.appendChild(buttonEl);
+    createdRecipesEl.appendChild(listEl);
+  }
+
+  //make buttons display info when clicked
+  buttonInit();
+}
+
+//creating buttons with recipe names from recipe search
+function createButtonsRecipe(data) {
+  for (let i = 0; i < data.results.length; i++) {
+    let name = data.results[i].title;
+    let recipeId = data.results[i].id;
+    let listEl = document.createElement(`li`);
+    let buttonEl = document.createElement(`button`);
+
+    buttonEl.textContent = name;
+    buttonEl.setAttribute(`id`, recipeId);
+    buttonEl.classList = `created-buttons`;
+
+    listEl.appendChild(buttonEl);
+    createdRecipesEl.appendChild(listEl);
+  }
+
+  buttonInit();
+}
+
+//function for when created buttons are clicked
+function buttonInit() {
+  // console.log(createdButtonsEl);
+
+  for (let i = 0; i < createdButtonsEl.length; i++) {
+    createdButtonsEl[i].addEventListener(`click`, function (event) {
+      // console.log(`it works`);
+
+      let recipeId = createdButtonsEl[i].id;
+
+      let buttonIDAPI = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${spoonAPIKey}`;
+
+      clearDisplay();
+      spoonAPICallerButton(buttonIDAPI);
+
+      // console.log(recipeId);
+    });
+  }
+  // console.log(createdButtonsEl.length);
+}
+
+//displaying recipe info
+function createRecipeInfo(data) {
+  let rName = data.title;
+  let rImage = data.image;
+  let instructions = data.instructions;
+  let summary = data.summary;
+
+  // console.log(summary);
+
+  displayedRecipe = {
+    id: data.id,
+    name: rName,
+  };
+
+  for (let i = 0; i < data.extendedIngredients.length; i++) {
+    let instEl = document.createElement(`p`);
+    instEl.textContent = data.extendedIngredients[i].original;
+    recipeIngEl.appendChild(instEl);
+  }
+  recipeIngEl.classList = `box`;
+
+  recipeNameEl.textContent = rName;
+  recipePicEl.setAttribute(`src`, rImage);
+
+  let recipeInfo = document.createElement("p");
+  recipeInfo.innerHTML = summary;
+  recipeSummaryEl.appendChild(recipeInfo);
+  recipeSummaryEl.classList = `box`;
+
+  let infoEl = document.createElement(`p`);
+  infoEl.innerHTML = instructions;
+  recipeInfoEl.appendChild(infoEl);
+  recipeInfoEl.classList = `box`;
+
+  ytAPICaller(rName);
+
+  favButtonEl.classList.remove(`is-invisible`);
+}
+
+//pushing the video onto youtube. we just grab the first result from the api call
+function embedVid(data) {
+  let vidId = data.items[0].id.videoId;
+  // console.log(vidId);
+
+  let ytLink = `https://www.youtube.com/embed/` + vidId;
+  // console.log(ytLink);
+
+  ytVidEl.setAttribute(`src`, ytLink);
+}
+
+//api caller when form is submitted and ingredients is selected
+function spoonAPICallerIng(url) {
+  fetch(url)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          // console.log(data);
+          createButtonsIng(data);
+        });
+      } else {
+        console.log(`Error: ${response.statusText}`);
+      }
+    })
+    .catch(function (error) {
+      console.log(`Unable to connect to API`);
+    });
+}
