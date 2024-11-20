@@ -43,9 +43,9 @@ My profile should allow me to save favorite recipes and track my weekly nutritio
 
 #APIs to be used
 
-Recipe API (Edamam or Spoonacular) to fetch recipes based on ingredients. 
+Recipe API (Spoonacular) to fetch recipes based on ingredients and calculate nutritional values.
 
-Nutrition API (USDA FoodData Central or Nutrionix) to calculate nutritional values.
+Video API to display recipe videos that the user can watch and follow. 
 
 ##Directions (Improvements)
 
