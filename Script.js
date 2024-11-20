@@ -2,6 +2,8 @@
 
 // Here is our Javascript for our Recipe and Nutrition website!
 
+// 2 APIs were used, youtube API and Spoonacular API
+
 // API keys
 const ytAPIKey = "AIzaSyCawopGL82AFkgjtzzGG56lw1ZIb4HZcmQ";
 
@@ -53,14 +55,11 @@ const bodyEl = document.querySelector("body");
 const homePage = document.querySelector("#homePage");
 const gitHubPage = document.querySelector("#gitPage");
 
-//
-// PUTTING ALL ONLOAD FUNCTIONS FIRST, TO MINIMISE SLOW DOM LOAD
-//
 
 //displaying favourited recipes
 function displayFavouritesOnStartup() {
-  // console.log(savedRecipes);
-
+  
+// This function works to display our favorited recipes. 
   for (let i = 0; i < savedRecipes.length; i++) {
     let favButtonEl = document.createElement(`button`);
     favButtonEl.classList = `button created-buttons is-clipped is-link`;
@@ -98,7 +97,7 @@ function displayCarousel() {
     });
 }
 
-// FUNCTION TO LOAD FETCH DATA ONTO CAROUSEL
+// FUNCTION TO LOAD FETCH DATA ONTO CAROUSEL. We did this to make our project a step more interactive. 
 const imgEl = document.getElementsByClassName("imgs");
 const titleEl = document.getElementById("recipeTitle");
 function carouselData(data) {
@@ -112,7 +111,8 @@ function carouselData(data) {
   }
 }
 
-// initializing the swiper object and creating "coverflow" to get the carousel we want
+// initializing the swiper object and creating "coverflow" to get the carousel we want. It flows to the left and to the right
+//you just need to drag and drop
 const TrendingSlider = new Swiper(".trending-slider", {
   effect: window.innerWidth <= 768 ? "cards" : "coverflow",
   effect: "coverflow",
@@ -161,9 +161,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-//
-// BELOW ARE NON-ONLOAD FUNCTIONS, THEY DO NOT NEED TO BE LISTED AT THE TOP
-//
 //amount of extra ingredients allowed to be added
 const maxAdd = 2;
 let clicked = 0;
@@ -246,11 +243,8 @@ function buttonInit() {
 
       clearDisplay();
       spoonAPICallerButton(buttonIDAPI);
-
-      // console.log(recipeId);
     });
   }
-  // console.log(createdButtonsEl.length);
 }
 
 //displaying recipe info
@@ -259,8 +253,6 @@ function createRecipeInfo(data) {
   let rImage = data.image;
   let instructions = data.instructions;
   let summary = data.summary;
-
-  // console.log(summary);
 
   displayedRecipe = {
     id: data.id,
@@ -427,8 +419,6 @@ function clearInputs() {
     // console.log(formInputsDivEl.children[1]);
     formInputsDivEl.children[1].remove();
   }
-
-  // console.log(formInputsDivEl.childElementCount);
 }
 
 //storing recipe id to local storage if favourited
@@ -562,8 +552,6 @@ formEl.addEventListener(`submit`, function (event) {
         let apiURL = `https://api.spoonacular.com/recipes/complexSearch?query=${spoonInput}&diet=vegetarian&number=5&apiKey=${spoonAPIKey}`;
         clearButtons();
         spoonAPiCallerRecipe(apiURL);
-        // console.log(`vegetarian checked`);
-        // console.log(apiURL);
       } else {
         let apiURL = `https://api.spoonacular.com/recipes/complexSearch?query=${spoonInput}&number=5&apiKey=${spoonAPIKey}`;
         clearButtons();
@@ -609,7 +597,7 @@ homePage.addEventListener("click", function (event) {
   window.location.reload();
 });
 
-// Linking to our GitHub Repo for the Project ! :D
+// Linking to our GitHub Repo for this project
 gitHubPage.addEventListener("click", function (event) {
   window.location.href =
     "https://github.com/namastenataly/project-01-NLDL";
@@ -632,10 +620,8 @@ modeBtn.addEventListener("click", function () {
     : "🌙";
 });
 
-// rgba(0, 0, 0, 0.5)
 
-// var(--dark0)
-
+// This code is for the toggle button to work properly
 function init() {
   const pageMode = localStorage.getItem("mode");
   if (pageMode === "inverted") {
