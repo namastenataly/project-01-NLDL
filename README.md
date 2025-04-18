@@ -1,61 +1,67 @@
-# project-01-NLDL
-##Project Title
+# 🥗 Meal Your Goals
 
-Meal Your Goals
+A smart meal planning app that suggests recipes based on the ingredients you already have and provides nutritional information to help users plan healthy meals with ease.
 
-#Project Description
+---
 
-Create a meal planning app that suggests recipes based on ingredients and provides nutritional information for each recipe. 
+## 📌 Project Description
 
-##User Story
+**Meal Your Goals** is designed for busy individuals who want to eat healthier, save time, and simplify meal planning. By inputting the ingredients you already have, the app suggests recipes and displays key nutritional info — helping you make better choices without the extra research.
 
-As a busy individual who wants to eat healthier and save time, I want a meal planning app that suggests recipes based on the ingredients I have and provides nutritional information for each recipe, so that I can easily plan nutritious meals and make informed choices without having to search for recipes or calculate nutritional values manually.
+---
 
-#Acceptance Criteria
+## 👤 User Story
 
-Ingredient-Based Recipe Suggestions
+> As a busy person who wants to eat healthier and save time, I want a meal planning app that suggests recipes based on the ingredients I have and gives me nutritional info, so I can plan nutritious meals and make informed decisions without manually searching or calculating.
 
-When I input ingredients I currently have on hand, the app should suggest a list of recipes that use those ingredients.
-The app should prioritize recipes that use the majority of the ingredients I input.
-I should be able to add or remove ingredients to refine the suggested recipes list.
-Nutritional Information
+---
 
-For each recipe suggested, the app should provide a breakdown of key nutritional information, including calories, protein, fats, carbohydrates, and other relevant nutrients.
-I should be able to see nutritional information per serving and for the entire recipe.
-Meal Planning Features
+## ✅ Acceptance Criteria
 
-I can add suggested recipes to a weekly meal plan, organized by day and meal (e.g., breakfast, lunch, dinner).
-The app should calculate and display the total nutritional information for each day’s planned meals.
-I can adjust serving sizes or substitute ingredients, and the app will update nutritional information accordingly.
-Shopping List Generation
+### 🧺 Ingredient-Based Recipe Suggestions
+- Enter ingredients on hand to get recipe suggestions.
+- Prioritize recipes using the most matching ingredients.
+- Add/remove ingredients to refine suggestions.
 
-The app should allow me to generate a shopping list of missing ingredients based on my planned recipes for the week.
-I should be able to adjust quantities of ingredients on the list and mark items as purchased.
-User Profile & Dietary Preferences
+### 🔬 Nutritional Information
+- Show calories, protein, carbs, fats, and more per recipe.
+- Display nutrition per serving and per recipe.
 
-The app should let me set dietary preferences and restrictions (e.g., vegetarian, low-carb), which will filter recipe suggestions accordingly.
-My profile should allow me to save favorite recipes and track my weekly nutritional goals based on meal plans.
+### 📅 Meal Planning Features
+- Add recipes to a weekly plan (by day + meal type).
+- Auto-calculate daily nutritional totals.
+- Adjust serving sizes or ingredients and update data live.
 
+### 🛒 Shopping List Generation
+- Auto-generate shopping list based on planned meals.
+- Adjust quantities and mark items as purchased.
 
-#Wireframe or sketch of the design
+### 🧑‍⚕️ User Profile & Preferences
+- Set dietary restrictions (vegetarian, low-carb, etc.).
+- Save favorite recipes and track nutrition goals.
 
+---
 
+## 🔌 APIs Used
 
-#APIs to be used
+- **[Spoonacular API](https://spoonacular.com/food-api)** — Fetch recipe data and nutrition info.
+- **Optional Video API** — Show recipe walk-throughs with video support.
 
-Recipe API (Spoonacular) to fetch recipes based on ingredients and calculate nutritional values.
+---
 
-Video API to display recipe videos that the user can watch and follow. 
+## 💡 Future Enhancements
 
-##Directions (Improvements)
+- Smart recommendations based on your past choices and dietary goals (e.g., weight loss, muscle gain).
+- Feedback system to improve future suggestions.
 
-The app could recommend recipes based on my past selections or dietary goals (e.g., weight loss, muscle gain).
-I should be able to give feedback on recipes, allowing the app to improve future suggestions.
+---
 
-#Rough breakdown of tasks
+## 🧠 Team & Responsibilities
 
-Liz and Dominic work on HTML
+| Name        | Tasks                        |
+|-------------|------------------------------|
+| Liz & Dominic | HTML structure & layout       |
+| Luis Samuel & Nataly | CSS styling (non-Bootstrap framework) |
+| Everyone    | JavaScript functionality      |
 
-Luis and Nataly work on CSS (other framework other than bootstrap)
-
-Everyone works on javascript 
+---
